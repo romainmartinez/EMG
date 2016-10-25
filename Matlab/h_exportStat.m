@@ -2,18 +2,14 @@
 %  ____                       _         __  __            _   _                  %
 % |  _ \ ___  _ __ ___   __ _(_)_ __   |  \/  | __ _ _ __| |_(_)_ __   ___ ____  %
 % | |_) / _ \| '_ ` _ \ / _` | | '_ \  | |\/| |/ _` | '__| __| | '_ \ / _ \_  /  %
-% |  _ < (_) | | | | | | (_| | | | | | | |  | | (_| | |  | |_| | | | |  __// /   % 
+% |  _ < (_) | | | | | | (_| | | | | | | |  | | (_| | |  | |_| | | | |  __// /   %
 % |_| \_\___/|_| |_| |_|\__,_|_|_| |_| |_|  |_|\__,_|_|   \__|_|_| |_|\___/___|  %
-%                                                                                %  
-% Auteur : Romain Martinez                                 Date : Juin 2016      %
-% Description : Export des variables 0D en .csv                                  %
-% Input : Matrices résultats                                                     % 
-% Output : Fichiers excel pour analyse stats (R)                                 %                                      
+%                                                                                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-						  clc; clear; close all
+                            clc; clear; close all 
 %% Chemin des dossier et caractéristiques de l'essai
-   % Chemin des fonctions
-addpath(genpath('\\10.89.24.15\f\Data\Epaule_manutention\Hommes-Femmes\Codes\FonctionMatlab'))
+    % Chemin des fonctions perso
+addpath(genpath('\\10.89.24.15\Projet_Romain\Codes\Functions_Matlab'))
    % Chemin des fichiers
 folderPath = ['Y:\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\Mat\'];
    % Noms des fichiers

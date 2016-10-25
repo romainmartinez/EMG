@@ -2,22 +2,18 @@
 %  ____                       _         __  __            _   _                  %
 % |  _ \ ___  _ __ ___   __ _(_)_ __   |  \/  | __ _ _ __| |_(_)_ __   ___ ____  %
 % | |_) / _ \| '_ ` _ \ / _` | | '_ \  | |\/| |/ _` | '__| __| | '_ \ / _ \_  /  %
-% |  _ < (_) | | | | | | (_| | | | | | | |  | | (_| | |  | |_| | | | |  __// /   % 
+% |  _ < (_) | | | | | | (_| | | | | | | |  | | (_| | |  | |_| | | | |  __// /   %
 % |_| \_\___/|_| |_| |_|\__,_|_|_| |_| |_|  |_|\__,_|_|   \__|_|_| |_|\___/___|  %
-%                                                                                %  
-% Auteur : Romain Martinez                                 Date : Juin 2016      %
-% Description : Traitement des fichiers de lever de caisse (avec GUI suppression)%
-% Input : Matrice RMS ;                                                          % 
-% Output : Stats de suppression ; RMS moyenne ; RMS max ;  IEMG ; RMS corrigée   %                                      
+%                                                                                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-						  clc; clear; close all
+                            clc; clear; close all 
 %% Chemin des dossier et caractéristiques de l'essai
     % Caractéristiques
 annee = 2016;
     % Nom du sujet
 subject = input('Enter subjet name : ','s');
-    % Chemin des fonctions
-addpath(genpath('\\10.89.24.15\f\Data\Epaule_manutention\Hommes-Femmes\Codes\FonctionMatlab'))
+    % Chemin des fonctions perso
+addpath(genpath('\\10.89.24.15\Projet_Romain\Codes\Functions_Matlab'))
     % Chemin des fichiers à analyser
 folderPath = ['Y:\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\' num2str(annee) '\' subject '\Results\'];
 

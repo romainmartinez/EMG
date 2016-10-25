@@ -2,15 +2,11 @@
 %  ____                       _         __  __            _   _                  %
 % |  _ \ ___  _ __ ___   __ _(_)_ __   |  \/  | __ _ _ __| |_(_)_ __   ___ ____  %
 % | |_) / _ \| '_ ` _ \ / _` | | '_ \  | |\/| |/ _` | '__| __| | '_ \ / _ \_  /  %
-% |  _ < (_) | | | | | | (_| | | | | | | |  | | (_| | |  | |_| | | | |  __// /   % 
+% |  _ < (_) | | | | | | (_| | | | | | | |  | | (_| | |  | |_| | | | |  __// /   %
 % |_| \_\___/|_| |_| |_|\__,_|_|_| |_| |_|  |_|\__,_|_|   \__|_|_| |_|\___/___|  %
-%                                                                                %  
-% Auteur : Romain Martinez                                 Date : Juin 2016      %
-% Description : Traitement des fichiers de lever de caisse : RMS                 %
-% Input : Matrice col_assign ; Matrice MVC ; Fichiers XP (c3d)                   % 
-% Output : Matrice contenant les RMS de chaque essai                             %                                      
+%                                                                                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-						  clc; clear; close all
+                            clc; clear; close all 
 %% Chemin des dossier et caractéristiques de l'essai
     % Caractéristiques
 FreqEMG = 2000;
@@ -23,7 +19,8 @@ subject = input('Enter subjet name : ','s');
 load(['Y:\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\' num2str(annee) '\' subject '\' subject '_ColAssign.mat'])
     % Chemin des fonctions
 loadS2MLib;
-addpath(genpath('\\10.89.24.15\f\Data\Epaule_manutention\Hommes-Femmes\Codes\FonctionMatlab'))
+    % Chemin des fonctions perso
+addpath(genpath('\\10.89.24.15\Projet_Romain\Codes\Functions_Matlab'))
     % Chemin des fichiers à analyser
 folderPath = ['Y:\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\' num2str(annee) '\' subject '\Manip\'];
 C3dfiles = dir([folderPath '*.c3d']);

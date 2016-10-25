@@ -2,21 +2,18 @@
 %  ____                       _         __  __            _   _                  %
 % |  _ \ ___  _ __ ___   __ _(_)_ __   |  \/  | __ _ _ __| |_(_)_ __   ___ ____  %
 % | |_) / _ \| '_ ` _ \ / _` | | '_ \  | |\/| |/ _` | '__| __| | '_ \ / _ \_  /  %
-% |  _ < (_) | | | | | | (_| | | | | | | |  | | (_| | |  | |_| | | | |  __// /   % 
+% |  _ < (_) | | | | | | (_| | | | | | | |  | | (_| | |  | |_| | | | |  __// /   %
 % |_| \_\___/|_| |_| |_|\__,_|_|_| |_| |_|  |_|\__,_|_|   \__|_|_| |_|\___/___|  %
-%                                                                                %  
-% Auteur : Romain Martinez                                 Date : Juin 2016      %
-% Description : Assigne chaque voie du fichier c3d à une colonne de matrice      %
-% Input : Fichier "*.c3d" de votre essai                                         % 
-% Output : Matrice avec chaque colonne correspondant à un muscle (ou voie)       %                                      
+%                                                                                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-						  clc; clear; close all                          
+                            clc; clear; close all                          
 %% Chemin des dossier et caractéristiques de l'essai
     % Caractéristiques
 annee = 2015;
     % Chemin des fonctions
 loadS2MLib;
-addpath(genpath('\\10.89.24.15\f\Data\Epaule_manutention\Hommes-Femmes\Codes\FonctionMatlab'))
+    % Chemin des fonctions perso
+addpath(genpath('\\10.89.24.15\Projet_Romain\Codes\Functions_Matlab'))
     % Nom du sujet
 subject = input('Enter subjet name : ','s');
     % Chemin des fichiers à analyser
