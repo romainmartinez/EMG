@@ -14,13 +14,13 @@ FenetreRMS = 250;
 NbreMuscle = 13;
 annee = 2015;
     % Nom du sujet
-subject = input('Enter subjet name : ','s');
+subject = input('Enter subject name : ','s');
     % Chargement de l'assignement des colonnes
 load(['Y:\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\' num2str(annee) '\' subject '\' subject '_ColAssign.mat'])
     % Chemin des fonctions
 loadS2MLib;
     % Chemin des fonctions perso
-addpath(genpath('\\10.89.24.15\Projet_Romain\Codes\Functions_Matlab'))
+addpath(genpath('\\10.89.24.15\e\Projet_Romain\Codes\Functions_Matlab'))
     % Chemin des fichiers à analyser
 folderPath = ['Y:\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\' num2str(annee) '\' subject '\Manip\'];
 C3dfiles = dir([folderPath '*.c3d']);

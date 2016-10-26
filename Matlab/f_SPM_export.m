@@ -20,7 +20,7 @@ essai = 'lowering';
 poids = 'absolute';
 
     % Chemin des fonctions perso
-addpath(genpath('\\10.89.24.15\Projet_Romain\Codes\Functions_Matlab'))
+addpath(genpath('\\10.89.24.15\e\Projet_Romain\Codes\Functions_Matlab'))
 cd('Y:\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\SPM');
 folder = uigetdir;
 cd(folder);

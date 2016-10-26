@@ -13,7 +13,7 @@ annee = 2016;
     % Nom du sujet
 subject = input('Enter subjet name : ','s');
     % Chemin des fonctions perso
-addpath(genpath('\\10.89.24.15\Projet_Romain\Codes\Functions_Matlab'))
+addpath(genpath('\\10.89.24.15\e\Projet_Romain\Codes\Functions_Matlab'))
     % Chemin des fichiers à analyser
 folderPath = ['Y:\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\' num2str(annee) '\' subject '\Results\'];
 
