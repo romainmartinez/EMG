@@ -12,7 +12,7 @@
 FreqEMG = 2000;
 FenetreRMS = 250;
 NbreMuscle = 13;
-annee = 2015;
+annee = 2016;
     % Nom du sujet
 subject = input('Enter subject name : ','s');
     % Chargement de l'assignement des colonnes
