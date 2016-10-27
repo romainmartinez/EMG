@@ -18,8 +18,8 @@ subject = input('Enter subject name : ','s');
     % Chargement de l'assignement des colonnes
 load(['\\10.89.24.15\f\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\' num2str(annee) '\' subject '\' subject '_ColAssign.mat'])
     % Chemin des fonctions
-%% Load des fonctions
-    if isempty(strfind(path, '\\10.89.24.15\e\Projet_Romain\Codes\Functions_Matlab'))
+%% Chargement des fonctions
+    if isempty(strfind(path, '\\10.89.24.15\e\Projet_IRSST_LeverCaisse\Codes\Functions_Matlab'))
         % Librairie S2M
             loadS2MLib;
         % Fonctions perso
