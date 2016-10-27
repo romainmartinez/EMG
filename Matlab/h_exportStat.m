@@ -7,9 +7,13 @@
 %                                                                                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                             clc; clear; close all 
-%% Chemin des dossier et caractéristiques de l'essai
-    % Chemin des fonctions perso
-addpath(genpath('\\10.89.24.15\e\Projet_Romain\Codes\Functions_Matlab'))
+%% Load des fonctions
+    if isempty(strfind(path, '\\10.89.24.15\e\Projet_Romain\Codes\Functions_Matlab'))
+        % Librairie S2M
+            loadS2MLib;
+        % Fonctions perso
+            addpath(genpath('\\10.89.24.15\e\Projet_Romain\Codes\Functions_Matlab'));
+    end
    % Chemin des fichiers
 folderPath = ['Y:\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\Mat\'];
    % Noms des fichiers

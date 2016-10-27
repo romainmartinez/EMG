@@ -12,8 +12,13 @@
 annee = 2016;
     % Nom du sujet
 subject = input('Enter subjet name : ','s');
-    % Chemin des fonctions perso
-addpath(genpath('\\10.89.24.15\e\Projet_Romain\Codes\Functions_Matlab'))
+%% Load des fonctions
+    if isempty(strfind(path, '\\10.89.24.15\e\Projet_Romain\Codes\Functions_Matlab'))
+        % Librairie S2M
+            loadS2MLib;
+        % Fonctions perso
+            addpath(genpath('\\10.89.24.15\e\Projet_Romain\Codes\Functions_Matlab'));
+    end
     % Chemin des fichiers à analyser
 folderPath = ['Y:\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\' num2str(annee) '\' subject '\Results\'];
 

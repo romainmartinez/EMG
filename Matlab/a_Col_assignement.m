@@ -10,10 +10,13 @@
 %% Chemin des dossier et caractéristiques de l'essai
     % Caractéristiques
 annee = 2015;
-    % Chemin des fonctions
-loadS2MLib;
-    % Chemin des fonctions perso
-addpath(genpath('\\10.89.24.15\e\Projet_Romain\Codes\Functions_Matlab'))
+%% Load des fonctions
+    if isempty(strfind(path, '\\10.89.24.15\e\Projet_Romain\Codes\Functions_Matlab'))
+        % Librairie S2M
+            loadS2MLib;
+        % Fonctions perso
+            addpath(genpath('\\10.89.24.15\e\Projet_Romain\Codes\Functions_Matlab'));
+    end
     % Nom du sujet
 subject = input('Enter subject name : ','s');
     % Chemin des fichiers à analyser
