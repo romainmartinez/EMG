@@ -15,7 +15,7 @@ annee = 2015;
         % Librairie S2M
             loadS2MLib;
         % Fonctions perso
-            addpath(genpath('\\10.89.24.15\e\Projet_Romain\Codes\Functions_Matlab'));
+            addpath(genpath('\\10.89.24.15\e\Projet_IRSST_LeverCaisse\Codes\Functions_Matlab'));
     end
     % Nom du sujet
 subject = input('Enter subject name : ','s');
