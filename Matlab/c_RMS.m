@@ -16,7 +16,7 @@ annee = 2015;
     % Nom du sujet
 subject = input('Enter subject name : ','s');
     % Chargement de l'assignement des colonnes
-load(['Y:\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\' num2str(annee) '\' subject '\' subject '_ColAssign.mat'])
+load(['\\10.89.24.15\f\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\' num2str(annee) '\' subject '\' subject '_ColAssign.mat'])
 %% Load des fonctions
     if isempty(strfind(path, '\\10.89.24.15\e\Projet_Romain\Codes\Functions_Matlab'))
         % Librairie S2M
@@ -25,10 +25,10 @@ load(['Y:\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\' num2str(annee) '\' su
             addpath(genpath('\\10.89.24.15\e\Projet_Romain\Codes\Functions_Matlab'));
     end
     % Chemin des fichiers à analyser
-folderPath = ['Y:\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\' num2str(annee) '\' subject '\Manip\'];
+folderPath = ['\\10.89.24.15\f\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\' num2str(annee) '\' subject '\Manip\'];
 C3dfiles = dir([folderPath '*.c3d']);
     % Chargement de la matrice MVC
-load(['Y:\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\' num2str(annee) '\' subject '\MVC\MaxMVC_' subject '.mat']);
+load(['\\10.89.24.15\f\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\' num2str(annee) '\' subject '\MVC\MaxMVC_' subject '.mat']);
 
 %% Traitement des fichiers
 
@@ -98,7 +98,7 @@ ntime=[];
         ntime(t) = (t*100)/length(EMGcut);
     end
 %% Sauvegarde
-savepath = ['Y:\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\' num2str(annee) '\' subject '\Results\'];
+savepath = ['\\10.89.24.15\f\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\' num2str(annee) '\' subject '\Results\'];
 	if ~exist(savepath, 'file')
 		mkdir(savepath);
 	end

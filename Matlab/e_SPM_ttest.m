@@ -16,7 +16,7 @@
             addpath(genpath('\\10.89.24.15\e\Projet_Romain\Codes\Functions_Matlab'));
     end
    % Chemin des fichiers
-folderPath = ['Y:\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\Mat\'];
+folderPath = ['\\10.89.24.15\f\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\Mat\'];
    % Noms des fichiers
 matfiles = dir([folderPath '*_data.mat']);
    % Noms des muscles
@@ -202,7 +202,7 @@ if length(x_blue) == length(x_red) & isempty(x_blue) ~= 1
 end
 %% Export de la figure
 title([poids_h ' vs ' poids_f ', ' hauteur]);
-savefig(['Y:\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\SPM\' num2str(essai_h) 'vs' num2str(essai_f) 'muscle' num2str(m)])
+savefig(['\\10.89.24.15\f\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\SPM\' num2str(essai_h) 'vs' num2str(essai_f) 'muscle' num2str(m)])
 %% Nettoyage workspace
 clear xi s SPMdata_h_temp  SPMdata_f_temp spm spmi x ntime x_blue x_red H
 end
@@ -247,7 +247,7 @@ df_h=df_h' ; df_f=df_f';
 
 export_r = [ntime df_h_moy df_f_moy df_h_std df_f_std];
 
-filename = ['Y:\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\SPM\' num2str(essai_h) 'vs' num2str(essai_f) 'muscle' num2str(m) '.xlsx'];
+filename = ['\\10.89.24.15\f\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\SPM\' num2str(essai_h) 'vs' num2str(essai_f) 'muscle' num2str(m) '.xlsx'];
    
 col_header={'ntime','mean_h','mean_f','std_h','std_f'};     %Row cell array (for column labels)
 zone_header = {'start','end'};

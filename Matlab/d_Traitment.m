@@ -20,7 +20,7 @@ subject = input('Enter subjet name : ','s');
             addpath(genpath('\\10.89.24.15\e\Projet_Romain\Codes\Functions_Matlab'));
     end
     % Chemin des fichiers à analyser
-folderPath = ['Y:\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\' num2str(annee) '\' subject '\Results\'];
+folderPath = ['\\10.89.24.15\f\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\' num2str(annee) '\' subject '\Results\'];
 
 %% Loader la matrice RMS
 matfiles = dir([folderPath '*.mat']);
@@ -103,7 +103,7 @@ for i = 1:max([condition])
 end
 
 %% Export des variables
-save(['Y:\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\' num2str(annee) '\' subject '\' subject '_result.mat'],'-struct','result','meanRMS','maxRMS','IEMG');
+save(['\\10.89.24.15\f\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\' num2str(annee) '\' subject '\' subject '_result.mat'],'-struct','result','meanRMS','maxRMS','IEMG');
 %% Export des data (EMGcut, Interp, ntime, meanRMS, maxRMS, IEMG)
-save(['Y:\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\' num2str(annee) '\' subject '\' subject '_data.mat'],'data','stat');
+save(['\\10.89.24.15\f\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\' num2str(annee) '\' subject '\' subject '_data.mat'],'data','stat');
 %%

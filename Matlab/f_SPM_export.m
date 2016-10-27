@@ -26,7 +26,7 @@ poids = 'absolute';
         % Fonctions perso
             addpath(genpath('\\10.89.24.15\e\Projet_Romain\Codes\Functions_Matlab'));
     end
-cd('Y:\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\SPM');
+cd('\\10.89.24.15\f\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\SPM');
 folder = uigetdir;
 cd(folder);
     

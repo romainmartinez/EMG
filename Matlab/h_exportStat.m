@@ -15,7 +15,7 @@
             addpath(genpath('\\10.89.24.15\e\Projet_Romain\Codes\Functions_Matlab'));
     end
    % Chemin des fichiers
-folderPath = ['Y:\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\Mat\'];
+folderPath = ['\\10.89.24.15\f\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\Mat\'];
    % Noms des fichiers
 matfiles = dir([folderPath '*_data.mat']);
    % Noms des muscles
@@ -81,7 +81,7 @@ end
                                       
                      
 	duree_mat = [info_mat , result_duree];
-	filename = ['Y:\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\Result\result_duree.csv'];
+	filename = ['\\10.89.24.15\f\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\Result\result_duree.csv'];
 	fid = fopen(filename, 'w+');
     
 Entete_duree ={'Sexe','Essai','Poids','Hauteur','Duree'};
@@ -118,7 +118,7 @@ Entete_duree ={'Sexe','Essai','Poids','Hauteur','Duree'};
                      
                      
 	meanRMS_mat = [info_mat , result_meanRMS];
-	filename = ['Y:\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\Result\result_meanRMS.csv'];
+	filename = ['\\10.89.24.15\f\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\Result\result_meanRMS.csv'];
 	 fid = fopen(filename, 'w+');
     
     for i = 1:length(Entete)
@@ -153,7 +153,7 @@ Entete_duree ={'Sexe','Essai','Poids','Hauteur','Duree'};
                      
                      
 	maxRMS_mat = [info_mat , result_maxRMS];
-	filename = ['Y:\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\Result\result_maxRMS.csv'];
+	filename = ['\\10.89.24.15\f\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\Result\result_maxRMS.csv'];
 	 fid = fopen(filename, 'w+');
     
     for i = 1:length(Entete)
@@ -188,7 +188,7 @@ Entete_duree ={'Sexe','Essai','Poids','Hauteur','Duree'};
                      
                      
 	IEMG_mat = [info_mat , result_IEMG];
-	filename = ['Y:\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\Result\result_IEMG.csv'];
+	filename = ['\\10.89.24.15\f\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\Result\result_IEMG.csv'];
 	 fid = fopen(filename, 'w+');
     
     for i = 1:length(Entete)

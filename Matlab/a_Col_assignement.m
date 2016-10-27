@@ -20,7 +20,7 @@ annee = 2015;
     % Nom du sujet
 subject = input('Enter subject name : ','s');
     % Chemin des fichiers à analyser
-folderPath = ['Y:\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\' num2str(annee) '\' subject '\Manip\'];
+folderPath = ['\\10.89.24.15\f\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\' num2str(annee) '\' subject '\Manip\'];
 C3dfiles = dir([folderPath '*.c3d']);
 
 %% Ouverture des fichiers
@@ -45,5 +45,5 @@ C3dfiles = dir([folderPath '*.c3d']);
     GUI_OrgData
 
    %% Sauvegarde 
-   save(['Y:\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\' num2str(annee) '\' subject '\' subject '_ColAssign.mat'],'Col_assign')
+   save(['\\10.89.24.15\f\Data\Epaule_manutention\Hommes-Femmes\Data\RAW\' num2str(annee) '\' subject '\' subject '_ColAssign.mat'],'Col_assign')
 
