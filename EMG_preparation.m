@@ -7,7 +7,6 @@
 %   Website: https://github.com/romainmartinez
 %_____________________________________________________________________________
 clear all; close all; clc
-% todo: reduct data, load force data, export .mat, SPM, graph R
 %% load functions
 if isempty(strfind(path, '\\10.89.24.15\e\Librairies\S2M_Lib\'))
     % S2M library
@@ -15,39 +14,30 @@ if isempty(strfind(path, '\\10.89.24.15\e\Librairies\S2M_Lib\'))
 end
 
 % local functions
-cd('C:\Users\marti\Documents\Codes\Kinematics\Cinematique\functions');
+cd('C:\Users\marti\Documents\Codes\EMG\functions');
 
 %% Switch
 saveresult = 1;
 
 %% Path
-path.BigDataPath = ['\\10.89.24.15\f\\Data\Epaule_manutention\Hommes-Femmes\Data\'];
 path.exportpath = '\\10.89.24.15\e\\Projet_IRSST_LeverCaisse\ElaboratedData\matrices\EMG\';
 
-%% load data
-load([path.BigDataPath 'dataEMG.mat'])
+%% Load data
+alias.sujet = sujets_valides;
 
-for isujet = 1:length(sujet)
-    if sujet(isujet).sexe == 'hommes'
-        sex = 'H';
-    elseif sujet(isujet).sexe == 'femmes'
-        sex = 'F';
+for isujet = 1%length(alias.sujet) : -1 : 1
+    disp(['Traitement de ' alias.sujet{isujet} ' (' num2str(length(alias.sujet) - isujet+1) ' sur ' num2str(length(alias.sujet)) ')'])
+    
+    path.raw      = ['\\10.89.24.15\f\Data\Shoulder\RAW\' cell2mat(alias.sujet(isujet)) 'd\trials\'];
+    C3dfiles   = dir([path.raw '*.c3d']);
+    
+    % load c3d column assignment, MVC and force index (start & end of trial)
+    [assign,MVC,forceindex] = load_param(alias.sujet{isujet});
+    for itrial = 1%length(C3dfiles) : -1 : 1
+        [analog,freq] = read_c3d([path.raw C3dfiles(itrial).name]);
+        
+        emg = get_EMG(analog, assign);
+        
     end
     
-    for itrial = 1:length(sujet(isujet).data.data)
-        % 1) sex
-        data(isujet).sex(itrial) = sex;
-        %         data(isujet).EMG = sujet(isujet).data.data(itrial).EMGcut;
-    end
-end
-
-sujet = [];
-for i = 1 : length(temp)
-    if temp(i).sexe == 'hommes'
-        sujet(i).sexe = 'H';
-    elseif temp(i).sexe == 'femmes'
-        sujet(i).sexe = 'F';
-    end
-    
-    sujet(i).EMG = temp(i).data.data.EMGcut
 end
