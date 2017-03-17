@@ -1,5 +1,5 @@
 %   Description: used to compute the EMG
-%   Output:  gives SPM output and graph
+%   Output:  gives emg struct
 %   Functions: uses functions present in \\10.89.24.15\e\Project_IRSST_LeverCaisse\Codes\Functions_Matlab
 %
 %   Author:  Romain Martinez
@@ -25,7 +25,7 @@ path.exportpath = '\\10.89.24.15\e\\Projet_IRSST_LeverCaisse\ElaboratedData\matr
 %% Load data
 alias.sujet = sujets_valides;
 
-for isujet = 37%length(alias.sujet) : -1 : 1
+for isujet = 32: -1 : 1 % length(alias.sujet)
     disp(['Traitement de ' alias.sujet{isujet} ' (' num2str(length(alias.sujet) - isujet+1) ' sur ' num2str(length(alias.sujet)) ')'])
     
     path.raw      = ['\\10.89.24.15\f\Data\Shoulder\RAW\' cell2mat(alias.sujet(isujet)) 'd\trials\'];
@@ -52,10 +52,13 @@ for isujet = 37%length(alias.sujet) : -1 : 1
         
         [analog,freq] = read_c3d([path.raw C3dfiles(itrial).name]);
         
-        [data(itrial).emg, assign] = get_EMG(analog, assign);
+        [data(itrial).emg, assign.emg] = get_EMG(analog, assign.emg);
     end
     [data]    = getcondition(data);
     [~,index] = sortrows([data.condition].'); data = data(index); clear index
     
-    save([path.exportpath alias.sujet{isujet} '.mat'],'data','MVC','freq')
+    if saveresult == 1;
+        save([path.exportpath alias.sujet{isujet} '.mat'],'data','MVC','freq')
+        save(['\\10.89.24.15\e\Projet_IRSST_LeverCaisse\ElaboratedData\matrices\col_assign\' alias.sujet{isujet} '.mat'],'assign')
+    end
 end
