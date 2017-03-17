@@ -25,7 +25,7 @@ path.exportpath = '\\10.89.24.15\e\\Projet_IRSST_LeverCaisse\ElaboratedData\matr
 %% Load data
 alias.sujet = sujets_valides;
 
-for isujet = 1%length(alias.sujet) : -1 : 1
+for isujet = 37%length(alias.sujet) : -1 : 1
     disp(['Traitement de ' alias.sujet{isujet} ' (' num2str(length(alias.sujet) - isujet+1) ' sur ' num2str(length(alias.sujet)) ')'])
     
     path.raw      = ['\\10.89.24.15\f\Data\Shoulder\RAW\' cell2mat(alias.sujet(isujet)) 'd\trials\'];
@@ -33,11 +33,29 @@ for isujet = 1%length(alias.sujet) : -1 : 1
     
     % load c3d column assignment, MVC and force index (start & end of trial)
     [assign,MVC,forceindex] = load_param(alias.sujet{isujet});
-    for itrial = 1%length(C3dfiles) : -1 : 1
-        [analog,freq] = read_c3d([path.raw C3dfiles(itrial).name]);
-        
-        emg = get_EMG(analog, assign);
-        
+    
+    if length(C3dfiles) == 36
+        sex = 'F';
+    elseif length(C3dfiles) == 54
+        sex = 'H';
     end
     
+    for itrial = length(C3dfiles) : -1 : 1
+        data(itrial).sex = sex;
+        
+        data(itrial).trialname = C3dfiles(itrial).name(5:11);
+        if data(itrial).trialname(end) == '.'
+            data(itrial).trialname = data(itrial).trialname(1:end-1);
+        end
+        % load start, end and duration of the trial (based on force sensor)
+        [data(itrial).start,data(itrial).end,data(itrial).time] = force_index(data(itrial).trialname,forceindex);
+        
+        [analog,freq] = read_c3d([path.raw C3dfiles(itrial).name]);
+        
+        [data(itrial).emg, assign] = get_EMG(analog, assign);
+    end
+    [data]    = getcondition(data);
+    [~,index] = sortrows([data.condition].'); data = data(index); clear index
+    
+    save([path.exportpath alias.sujet{isujet} '.mat'],'data','MVC','freq')
 end
