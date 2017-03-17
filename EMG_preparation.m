@@ -19,13 +19,14 @@ cd('C:\Users\marti\Documents\Codes\EMG\functions');
 %% Switch
 saveresult = 1;
 
+
 %% Path
 path.exportpath = '\\10.89.24.15\e\\Projet_IRSST_LeverCaisse\ElaboratedData\matrices\EMG\';
 
 %% Load data
 alias.sujet = sujets_valides;
 
-for isujet = 32: -1 : 1 % length(alias.sujet)
+for isujet = length(alias.sujet): -1 : 1
     disp(['Traitement de ' alias.sujet{isujet} ' (' num2str(length(alias.sujet) - isujet+1) ' sur ' num2str(length(alias.sujet)) ')'])
     
     path.raw      = ['\\10.89.24.15\f\Data\Shoulder\RAW\' cell2mat(alias.sujet(isujet)) 'd\trials\'];
@@ -35,14 +36,14 @@ for isujet = 32: -1 : 1 % length(alias.sujet)
     [assign,MVC,forceindex] = load_param(alias.sujet{isujet});
     
     if length(C3dfiles) == 36
-        sex = 'F';
+        sex = 2;
     elseif length(C3dfiles) == 54
-        sex = 'H';
+        sex = 1;
     end
     
     for itrial = length(C3dfiles) : -1 : 1
         data(itrial).sex = sex;
-        
+        data(itrial).name = alias.sujet{isujet}(7:end);
         data(itrial).trialname = C3dfiles(itrial).name(5:11);
         if data(itrial).trialname(end) == '.'
             data(itrial).trialname = data(itrial).trialname(1:end-1);
@@ -57,7 +58,7 @@ for isujet = 32: -1 : 1 % length(alias.sujet)
     [data]    = getcondition(data);
     [~,index] = sortrows([data.condition].'); data = data(index); clear index
     
-    if saveresult == 1;
+    if saveresult == 1
         save([path.exportpath alias.sujet{isujet} '.mat'],'data','MVC','freq')
         save(['\\10.89.24.15\e\Projet_IRSST_LeverCaisse\ElaboratedData\matrices\col_assign\' alias.sujet{isujet} '.mat'],'assign')
     end
