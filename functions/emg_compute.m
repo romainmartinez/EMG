@@ -1,4 +1,4 @@
-function emg = emg_compute(MVC,data,freq)
+function data = emg_compute(MVC,data,freq)
 %% parameters
 param.bandfilter = [10,425]; % lower and upper freq
 param.lowfilter = 5;
@@ -7,19 +7,19 @@ param.nbframe = 1000; % number frame needed (interpolation)
 
 %% treatment
 for itrial = length(data):-1:1
-    emg = data(itrial).emg';
+    emg = data(itrial).emg;
 
     % 1) Rebase
-    emg = bsxfun(@minus, emg, mean(emg,1));
+    emg = emg - mean(emg);
     
     % 2) band-pass filter
-    emg =  transpose(bandfilter(emg',param.bandfilter(1),param.bandfilter(2),freq.emg));
+    emg =  bandfilter(emg,param.bandfilter(1),param.bandfilter(2),freq.emg);
 %% method lp    
     %) 3) signal rectification
     emg = abs(emg);
     
     % 4) low pass filter at 5Hz
-    emg = transpose(lpfilter(emg', param.lowfilter, freq.emg));
+    emg = lpfilter(emg, param.lowfilter, freq.emg);
     
 % %% method rms   
 %     % 3) RMS
@@ -30,13 +30,16 @@ for itrial = length(data):-1:1
 %     end
 
     % 5) Normalization
-    emg = bsxfun(@rdivide, emg, MVC'/100);
+    emg = emg ./ (MVC/100);
     
     % 6) slice trial with force onset/offset
-    debut = (data(1).start*freq.emg)/freq.camera;
-    fin = (data(1).end*freq.emg)/freq.camera;
-    emg = emg(:,debut:fin);
+    debut = (data(itrial).start*freq.emg)/freq.camera;
+    fin = (data(itrial).end*freq.emg)/freq.camera;
+    emg = emg(round(debut):round(fin),:);
     
     % 7) interpolation
-    emg = ScaleTime(emg', 1, length(emg), param.nbframe);
+    emg = ScaleTime(emg, 1, length(emg), param.nbframe);
+    
+    data(itrial).emg = emg;
+    clearvars emg
 end
