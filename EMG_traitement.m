@@ -27,23 +27,26 @@ alias.matname = dir([path.Datapath '*mat']);
 alias.matname = dir([path.Datapath '*mat']);
 
 %% load data
+bigstruct = [];
 for imat = length(alias.matname) : -1 : 1
     % load emg data
     load([path.Datapath alias.matname(imat).name]);
+    
+    disp(['Traitement de ' data(1).name ' (' num2str(length(alias.matname) - imat+1) ' sur ' num2str(length(alias.matname)) ')'])
     
     % Choice of comparison (absolute or relative)
     [data] = comparison(data, comparaison);
     
     % compute EMG
-    emg = emg_compute(MVC, data, freq);
+    data = emg_compute(MVC, data, freq);
+       
+    bigstruct = [bigstruct data];
 end
-% big structure of data
-bigstruct  = struct2array(RAW);
 
 %% Factors
-SPM.sexe    = vertcat(bigstruct(:).sexe)';
+SPM.sexe    = vertcat(bigstruct(:).sex)';
 SPM.hauteur = vertcat(bigstruct(:).hauteur)';
 SPM.poids   = vertcat(bigstruct(:).poids)';
 SPM.duree   = vertcat(bigstruct(:).time)';
-SPM.sujet   = vertcat(bigstruct(:).nsujet)';
+% SPM.sujet   = vertcat(bigstruct(:).nsujet)';
 
