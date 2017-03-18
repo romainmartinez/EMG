@@ -16,3 +16,37 @@ end
 % local functions
 cd('C:\Users\marti\Documents\Codes\EMG\functions');
 
+%% Switch
+comparaison =  '%';         % '=' (absolute) ou '%' (relative)
+
+%% Path
+path.Datapath = '\\10.89.24.15\e\\Projet_IRSST_LeverCaisse\ElaboratedData\matrices\EMG\';
+path.exportpath = '\\10.89.24.15\e\\Projet_IRSST_LeverCaisse\ElaboratedData\contribution_articulation\SPM\';
+alias.matname = dir([path.Datapath '*mat']);
+
+alias.matname = dir([path.Datapath '*mat']);
+
+%% load data
+bigstruct = [];
+for imat = length(alias.matname) : -1 : 1
+    % load emg data
+    load([path.Datapath alias.matname(imat).name]);
+    
+    disp(['Traitement de ' data(1).name ' (' num2str(length(alias.matname) - imat+1) ' sur ' num2str(length(alias.matname)) ')'])
+    
+    % Choice of comparison (absolute or relative)
+    [data] = comparison(data, comparaison);
+    
+    % compute EMG
+    data = emg_compute(MVC, data, freq);
+       
+    bigstruct = [bigstruct data];
+end
+
+%% Factors
+SPM.sexe    = vertcat(bigstruct(:).sex)';
+SPM.hauteur = vertcat(bigstruct(:).hauteur)';
+SPM.poids   = vertcat(bigstruct(:).poids)';
+SPM.duree   = vertcat(bigstruct(:).time)';
+% SPM.sujet   = vertcat(bigstruct(:).nsujet)';
+
