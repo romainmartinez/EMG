@@ -6,7 +6,7 @@
 %   email:   martinez.staps@gmail.com
 %   Website: https://github.com/romainmartinez
 %_____________________________________________________________________________
-clear all; close all; clc
+clear variables; close all; clc
 %% load functions
 if isempty(strfind(path, '\\10.89.24.15\e\Librairies\S2M_Lib\'))
     % S2M library
@@ -17,13 +17,11 @@ end
 cd('C:\Users\marti\Documents\Codes\EMG\functions');
 
 %% Switch
-comparaison =  '%';         % '=' (absolute) ou '%' (relative)
+comparaison =  '%';  % '=' (absolute) ou '%' (relative)
 
 %% Path
 path.Datapath = '\\10.89.24.15\e\\Projet_IRSST_LeverCaisse\ElaboratedData\matrices\EMG\';
 path.exportpath = '\\10.89.24.15\e\\Projet_IRSST_LeverCaisse\ElaboratedData\contribution_articulation\SPM\';
-alias.matname = dir([path.Datapath '*mat']);
-
 alias.matname = dir([path.Datapath '*mat']);
 
 %% load data
