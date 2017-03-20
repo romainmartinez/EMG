@@ -25,26 +25,27 @@ path.exportpath = '\\10.89.24.15\e\\Projet_IRSST_LeverCaisse\ElaboratedData\cont
 alias.matname = dir([path.Datapath '*mat']);
 
 %% load data
-bigstruct = [];
-for imat = length(alias.matname) : -1 : 1
+for imat = 40%length(alias.matname) : -1 : 1
     % load emg data
     load([path.Datapath alias.matname(imat).name]);
     
     disp(['Traitement de ' data(1).name ' (' num2str(length(alias.matname) - imat+1) ' sur ' num2str(length(alias.matname)) ')'])
     
     % Choice of comparison (absolute or relative)
-    [data] = comparison(data, comparaison);
+    [data] = comparison_weight(data, comparaison);
+    
+    [data.nsujet] = deal(imat); % subject ID
     
     % compute EMG
-    data = emg_compute(MVC, data, freq);
-       
-    bigstruct = [bigstruct data];
+    bigstruct(imat).raw = emg_compute(MVC, data, freq);
+    
+    clearvars data freq MVC
 end
 
 %% Factors
-SPM.sexe    = vertcat(bigstruct(:).sex)';
-SPM.hauteur = vertcat(bigstruct(:).hauteur)';
-SPM.poids   = vertcat(bigstruct(:).poids)';
-SPM.duree   = vertcat(bigstruct(:).time)';
-% SPM.sujet   = vertcat(bigstruct(:).nsujet)';
-
+bigstruct = [bigstruct.raw];
+spm.sex = [bigstruct.sex]';
+spm.height = [bigstruct.hauteur]';
+spm.weight = [bigstruct.poids]';
+spm.nsubject = [bigstruct.nsujet]';
+spm.time  = linspace(0,100,100);
