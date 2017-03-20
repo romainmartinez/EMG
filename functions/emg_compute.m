@@ -3,7 +3,7 @@ function data = emg_compute(MVC,data,freq)
 param.bandfilter = [10,425]; % lower and upper freq
 param.lowfilter = 5;
 param.RMSwindow = 250;
-param.nbframe = 1000; % number frame needed (interpolation)
+param.nbframe = 100; % number frame needed (interpolation)
 
 %% treatment
 for itrial = length(data):-1:1
