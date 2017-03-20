@@ -25,7 +25,7 @@ path.exportpath = '\\10.89.24.15\e\\Projet_IRSST_LeverCaisse\ElaboratedData\cont
 alias.matname = dir([path.Datapath '*mat']);
 
 %% load data
-for imat = 40%length(alias.matname) : -1 : 1
+for imat = length(alias.matname) : -1 : 1
     % load emg data
     load([path.Datapath alias.matname(imat).name]);
     
@@ -49,3 +49,15 @@ spm.height = [bigstruct.hauteur]';
 spm.weight = [bigstruct.poids]';
 spm.nsubject = [bigstruct.nsujet]';
 spm.time  = linspace(0,100,100);
+spm.muscle = repmat(1:13,1,length(bigstruct))';
+spm.emg = [bigstruct.emg]';
+
+%% NaN remover
+% replace each NaN columns (muscle not recorded) by the means of other participants (same sex)
+height = 4;
+spm.comp = spm.emg(spm.muscle == 1,:);
+current = spm.comp(spm.height == height,:);
+
+xi=clean_data(current');
+
+
