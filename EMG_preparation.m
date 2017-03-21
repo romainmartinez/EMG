@@ -32,21 +32,11 @@ for isujet = length(alias.sujet): -1 : 1
     C3dfiles = dir([path.raw '*.c3d']);
     
     % load c3d column assignment, MVC and force index (start & end of trial)
-    [assign,MVC,forceindex] = load_param(alias.sujet{isujet});
-    
-    if length(C3dfiles) == 36
-        sex = 2;
-    elseif length(C3dfiles) == 54
-        sex = 1;
-    end
+    [assign,MVC,forceindex,sex] = load_param(alias.sujet{isujet});
     
     for itrial = length(C3dfiles) : -1 : 1
-        data(itrial).sex = sex;
-        data(itrial).name = alias.sujet{isujet}(7:end);
         data(itrial).trialname = C3dfiles(itrial).name(5:11);
-        if data(itrial).trialname(end) == '.'
-            data(itrial).trialname = data(itrial).trialname(1:end-1);
-        end
+        data(itrial).trialname(data(itrial).trialname == '.') = '';
         % load start, end and duration of the trial (based on force sensor)
         [data(itrial).start,data(itrial).end,data(itrial).time] = force_index(data(itrial).trialname,forceindex);
         
@@ -54,11 +44,14 @@ for isujet = length(alias.sujet): -1 : 1
         
         [data(itrial).emg, assign.emg] = get_EMG(analog, assign.emg);
     end
-    [data]    = getcondition(data);
+    [data.sex] = deal(sex);
+    [data.name] = deal(alias.sujet{isujet}(7:end));
+    [data] = getcondition(data);
     [~,index] = sortrows([data.condition].'); data = data(index); clear index
     
     if saveresult == 1
         save([path.exportpath alias.sujet{isujet} '.mat'],'data','MVC','freq')
         save(['\\10.89.24.15\e\Projet_IRSST_LeverCaisse\ElaboratedData\matrices\col_assign\' alias.sujet{isujet} '.mat'],'assign')
     end
+    clearvars -except alias path saveresult isujet
 end
