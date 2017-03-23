@@ -22,11 +22,11 @@ for itrial = length(data):-1:1
     % 4) low pass filter at 5Hz
     emg = lpfilter(emg, param.lowfilter, freq.emg);
     
-    %         % 3) RMS
-    %         RMS = nan(size(emg));
-    %         for j = param.RMSwindow:length(emg)-param.RMSwindow-1
-    %             RMS(j,:) = rms(emg(j-param.RMSwindow+1:j+param.RMSwindow,:));
-    %         end
+%             % 3) RMS
+%             RMS = nan(size(emg));
+%             for j = param.RMSwindow:length(emg)-param.RMSwindow-1
+%                 RMS(j,:) = rms(emg(j-param.RMSwindow+1:j+param.RMSwindow,:));
+%             end
     
     % 5) Normalization
     emg = emg ./ (MVC/100);
