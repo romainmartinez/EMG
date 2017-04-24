@@ -1,20 +1,15 @@
 %   Description: used to compute the EMG
 %   Output:  gives emg struct
-%   Functions: uses functions present in \\10.89.24.15\e\Project_IRSST_LeverCaisse\Codes\Functions_Matlab
+%   Functions: uses functions present in //10.89.24.15/e/Project_IRSST_LeverCaisse/Codes/Functions_Matlab
 %
 %   Author:  Romain Martinez
 %   email:   martinez.staps@gmail.com
 %   Website: https://github.com/romainmartinez
 %_____________________________________________________________________________
-clear variables; close all; clc
-%% load functions
-if ~contains(path, '\\10.89.24.15\e\Librairies\S2M_Lib\')
-    % S2M library
-    loadS2MLib;
-end
 
-% local functions
-cd('C:\Users\marti\Documents\Codes\EMG\functions');
+clear variables; close all; clc
+
+path2 = load_functions('linux', 'EMG');
 
 %% Switch
 comparaison =  '%';  % '=' (absolute) ou '%' (relative)
@@ -23,15 +18,15 @@ useoldemg   =   1;   % 0 ou 1
 export      =   1;   % o ou 1
 
 %% Path
-path.Datapath = '\\10.89.24.15\e\\Projet_IRSST_LeverCaisse\ElaboratedData\matrices\EMG\';
-path.exportpath = '\\10.89.24.15\e\\Projet_IRSST_LeverCaisse\ElaboratedData\emg\SPM\';
-alias.matname = dir([path.Datapath '*mat']);
+path2.Datapath = [path2.E '/Projet_IRSST_LeverCaisse/ElaboratedData/matrices/EMG/'];
+path2.exportpath = [path2.E '/Projet_IRSST_LeverCaisse/ElaboratedData/emg/SPM/'];
+alias.matname = dir([path2.Datapath '*mat']);
 
 %% load data
 if useoldemg == 0
     for imat = length(alias.matname) : -1 : 1
         % load emg data
-        load([path.Datapath alias.matname(imat).name]);
+        load([path2.Datapath alias.matname(imat).name]);
         
         disp(['Traitement de ' data(1).name ' (' num2str(length(alias.matname) - imat+1) ' sur ' num2str(length(alias.matname)) ')'])
         
@@ -45,10 +40,10 @@ if useoldemg == 0
         
         clearvars data freq MVC
     end
-    save('\\10.89.24.15\e\Projet_IRSST_LeverCaisse\ElaboratedData\emg\bigstruct.mat','bigstruct')
+    save([path2.E '/Projet_IRSST_LeverCaisse/ElaboratedData/emg/bigstruct.mat','bigstruct'])
 else
     disp('Loading, please wait.')
-    load('\\10.89.24.15\e\Projet_IRSST_LeverCaisse\ElaboratedData\emg\bigstruct.mat')
+    load([path2.E '/Projet_IRSST_LeverCaisse/ElaboratedData/emg/bigstruct.mat'])
 end
 
 %% Factors
@@ -79,6 +74,6 @@ end
 
 %% export result
 if export == 1
-    export_emg(result,path,comparaison);
+    export_emg(result,path2,comparaison);
 end
 

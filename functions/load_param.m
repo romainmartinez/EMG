@@ -1,11 +1,11 @@
-function [assign,MatMVCMat,forceindex,sex] = load_param(name)
+function [assign,MatMVCMat,forceindex,sex] = load_param(name, path2)
 
 % col assignment
-load(['\\10.89.24.15\e\Projet_IRSST_LeverCaisse\ElaboratedData\matrices\col_assign\' name '.mat']);
+load([path2.E '/Projet_IRSST_LeverCaisse/ElaboratedData/matrices/col_assign/' name '.mat']);
 % MVC
-load(['\\10.89.24.15\e\Projet_IRSST_LeverCaisse\ElaboratedData\matrices\EMG\MVC\MaxMVC_' lower(name(7:end)) '.mat']);
+load([path2.E '/Projet_IRSST_LeverCaisse/ElaboratedData/matrices/EMG/MVC/MaxMVC_' lower(name(7:end)) '.mat']);
 % force index
-load(['\\10.89.24.15\e\Projet_IRSST_LeverCaisse\ElaboratedData\matrices\forceindex\' name '_forceindex.mat']);
+load([path2.E '/Projet_IRSST_LeverCaisse/ElaboratedData/matrices/forceindex/' name '_forceindex.mat']);
 
     if length(forceindex) == 36
         sex = 2;
